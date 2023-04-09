@@ -1,0 +1,88 @@
+﻿@*@model IEnumerable<WebApplication1.Entities.Employee>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+    </head>
+    <body>
+        @foreach (var item in Model)
+        {
+           <div>
+            <h1>Firstname : @item.Firstname</h1>
+            <h1>Lastname : @item.Lastname</h1>
+            <div>
+                <span>User ID : @item.Id</span>
+            </div>
+           </div>
+        }
+    </body>
+</html>
+*@
+
+
+@model WebApplication1.Models.EmployeeViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+<body>
+    @{
+        var color = "";
+    }
+    @foreach (var item in Model.Employees)
+    {
+        @if (item.Id % 2 == 0)
+        {
+            color = "green";
+        }
+        else
+        {
+            color = "red";
+        }
+        <div style="color:@color;">
+            <h1>Firstname : @item.Firstname</h1>
+            <h1>Lastname : @item.Lastname</h1>
+            <div>
+                <span>User ID : @item.Id</span>
+            </div>
+        </div>
+    }
+    <hr />
+    @foreach (var item in Model.Cities)
+    {
+        <h3>@item</h3>
+    }
+
+    <footer>
+
+
+        @*@try
+        {
+            throw new NullReferenceException("Data bosh gonderildi");
+        }
+        catch (Exception ex)
+        {
+            <h1 style="color:red;">@ex.Message</h1>
+        }*@
+
+        @*@for (int i = 0; i < Model.Employees.Count; i++)
+        {
+            <h1>@Model.Employees[i].Firstname</h1>
+        }*@
+
+
+       @* <h1>I am @@home</h1>*@
+
+       <h1>
+           Current Date : @DateTime.Now.ToLongDateString();
+       </h1>
+
+    </footer>
+</body>
+</html>
+
