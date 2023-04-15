@@ -40,10 +40,22 @@ namespace WebApplication1.TagHelpers
         private const string ListCountAttribute = "count";
         [HtmlAttributeName(ListCountAttribute)]
         public int ListCount { get; set; }
+
+        private const string SortAttribute = "sort";
+        [HtmlAttributeName(SortAttribute)]
+        public string SortAttrValue { get; set; }
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "section";
             var query = _employees.Take(ListCount);
+            if (SortAttrValue == "a-z")
+            {
+                query = query.OrderBy((e) => e.Firstname);
+            }
+            else
+            {
+                query = query.OrderByDescending((e) => e.Firstname);
+            }
             StringBuilder sb = new StringBuilder();
             foreach (var item in query)
             {
