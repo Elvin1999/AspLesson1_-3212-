@@ -8,15 +8,33 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Entities;
 using WebApplication1.Models;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-       
+
+        //private readonly ICalculator _calculator;
+
+        //public HomeController(ICalculator calculator)
+        //{
+        //    _calculator = calculator;
+        //}
+
+        private readonly ICalculator _calculator1;
+        private readonly ICalculator _calculator2;
+
+        public HomeController(ICalculator calculator1, ICalculator calculator2)
+        {
+            _calculator1 = calculator1;
+            _calculator2 = calculator2;
+        }
+
         public string Index()
         {
-            return "Hello from Index action";
+
+            return $"Hello from Index action{_calculator1.Calculate(100)}";
         }
 
         public IActionResult Index2()

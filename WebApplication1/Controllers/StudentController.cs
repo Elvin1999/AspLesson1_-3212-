@@ -2,21 +2,35 @@
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchoolDbContext _context;
+        //private IStudentRepository _studentRepository;
 
-        public StudentController(SchoolDbContext context)
+        //public StudentController(IStudentRepository studentRepository)
+        //{
+        //    _studentRepository = studentRepository;
+        //}
+
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _studentRepository.GetAllAsync());
+        //}
+
+
+        private readonly IStudentService _studentService;
+
+        public StudentController(IStudentService studentService)
         {
-            _context = context;
+            _studentService = studentService;
         }
-
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string key="")
         {
-            return View(await _context.Students.ToListAsync());
+            return View(await _studentService.GetAllByKey(key));
         }
     }
 }

@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Models;
+using WebApplication1.Repositories;
+using WebApplication1.Services;
 
 namespace WebApplication1
 {
@@ -32,6 +34,11 @@ namespace WebApplication1
             {
                 opt.UseSqlServer(conn);
             });
+            //services.AddSingleton<ICalculator, SimpleCalculator>();
+           // services.AddScoped<ICalculator, SimpleCalculator>();
+            services.AddTransient<ICalculator, SimpleCalculator>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IStudentService, StudentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

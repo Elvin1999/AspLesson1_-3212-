@@ -1,14 +1,6 @@
 ﻿@model WebApplication1.Models.EmployeeAddViewModel
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add</title>
-    </head>
-    <body>
+
 
     <form asp-controller="Employee" asp-action="Add" method="post">
         <section>
@@ -35,5 +27,3 @@
         </section>
     </form>
     <employee-list count="3" sort="z-a" ></employee-list>
-    </body>
-</html>
